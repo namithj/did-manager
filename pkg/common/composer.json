@@ -1,0 +1,26 @@
+{
+  "name": "fairpm/did-manager",
+  "type": "library",
+  "require": {
+    "php": "^8.4",
+    "simplito/elliptic-php": "^1.0",
+    "spomky-labs/cbor-php": "^3.1",
+    "thecodingmachine/safe": "^3.3",
+    "yocto/yoclib-multibase": "^1.2"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^3.84",
+    "phpstan/phpstan": "^2.1",
+    "phpunit/phpunit": "^12.2",
+    "roave/security-advisories": "dev-latest",
+    "thecodingmachine/phpstan-safe-rule": "^1.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "FAIR\\": "src/FAIR"
+    }
+  },
+  "config": {
+    "sort-packages": true
+  }
+}
