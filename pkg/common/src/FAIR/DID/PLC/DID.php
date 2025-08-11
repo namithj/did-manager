@@ -1,13 +1,8 @@
 <?php
 
-/** @noinspection ForgottenDebugOutputInspection */
-
-namespace FAIR\DID;
+namespace FAIR\DID\PLC;
 
 use Elliptic\EC\KeyPair;
-use Exception;
-use FAIR\DID\PLC\Operation;
-use FAIR\DID\PLC\SignedOperation;
 use MiniFAIR\PLC\JunkDrawer\Keys;
 use MiniFAIR\PLC\JunkDrawer\Operations;
 
@@ -89,19 +84,17 @@ class DID
         $this->_not_implemented();
     }
 
-    public function update()
+    public function update(): void
     {
         $op = $this->prepare_update_op();
         if (!$op) {
             // no changes
             return;
         }
-
-        // Perform the operation.
-        return $this->perform_operation($op);
+        $this->perform_operation($op);
     }
 
-    protected function get_package_endpoint()
+    protected function get_package_endpoint(): string
     {
         // return rest_url( API\REST_NAMESPACE . '/packages/' . $this->id )
         $this->_not_implemented();
@@ -109,10 +102,7 @@ class DID
 
     protected function prepare_update_op(): ?SignedOperation
     {
-        // Fetch the previous op.
         $last_op = $this->fetch_last_op();
-
-        // Get it as a CID.
         $last_cid = Operations::cid_for_operation($last_op);
 
         $endpoint = $this->get_package_endpoint();
@@ -151,11 +141,7 @@ class DID
         return $update_signed;
     }
 
-    /**
-     * @return Operation
-     * @throws Exception
-     */
-    public function fetch_last_op(): Operation
+    public function fetch_last_op(): SignedOperation
     {
         $url = sprintf('%s/%s/log/last', static::DIRECTORY_API, $this->id);
         // $data = HTTP::get($url);

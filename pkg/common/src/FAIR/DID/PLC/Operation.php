@@ -3,7 +3,6 @@
 namespace FAIR\DID\PLC;
 
 use Elliptic\EC\KeyPair;
-use FAIR\DID\DID;
 use JsonSerializable;
 use MiniFAIR\PLC\JunkDrawer\Keys;
 use MiniFAIR\PLC\JunkDrawer\Operations;
